@@ -5,6 +5,7 @@
   "dependencies": {
     "ant-design-pro": "^2.2.1",
     "antd": "^3.13.6",
+    "axios": "^0.18.0",
     "react": "^16.8.3",
     "react-app-rewired": "^2.1.0",
     "react-dom": "^16.8.3",
