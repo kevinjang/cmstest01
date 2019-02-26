@@ -1,10 +1,11 @@
 import React from 'react'
-import {Alert} from 'antd'
+import {Alert, notification} from 'antd'
 import 'antd/lib/style/css'
 // import {Router, Redirect} from 'react-router'
 import Login from 'ant-design-pro/lib/Login'
 import 'ant-design-pro/lib/Login/style/css'
 // import { browserHistory } from 'react-router'
+
 
 const { Tab, UserName, Password,Captcha, Submit, Mobile } = Login
 
@@ -33,10 +34,22 @@ class Login1 extends React.Component {
         })
     }
 
-    onSubmit= (err,values)=>{
-        this.setState({
-            notice: '消息提醒'
+    openNotificationwithIcon = (type)=>{
+        notification[type]({
+            message:this.state.notice,
+            description:'hha'
         })
+    }
+
+
+    onSubmit= (err,values)=>{
+        // this.setState({
+        //     notice: '消息提醒'
+        // })
+
+        this.openNotificationwithIcon('error');
+
+
 
         console.log('onSubmit')
         // Router.Redirect('./MainFrame/MainFrame')
