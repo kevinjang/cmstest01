@@ -1,10 +1,10 @@
 import React from 'react'
 import {Alert} from 'antd'
 import 'antd/lib/style/css'
-import {Router, Redirect} from 'react-router'
+// import {Router, Redirect} from 'react-router'
 import Login from 'ant-design-pro/lib/Login'
 import 'ant-design-pro/lib/Login/style/css'
-import { browserHistory } from 'react-router'
+// import { browserHistory } from 'react-router'
 
 const { Tab, UserName, Password,Captcha, Submit, Mobile } = Login
 
@@ -19,12 +19,12 @@ class Login1 extends React.Component {
             }
         ]
     }
-    constructor(props) {
-        super(props)
-        // this.state = {
-        //     tabs:[]
-        // }
-    }
+    // constructor(props) {
+    //     super(props)
+    //     // this.state = {
+    //     //     tabs:[]
+    //     // }
+    // }
 
     onTabChange = (e)=>{
         // console.log(this)
@@ -37,7 +37,14 @@ class Login1 extends React.Component {
         this.setState({
             notice: '消息提醒'
         })
+
+        console.log('onSubmit')
         // Router.Redirect('./MainFrame/MainFrame')
+    }
+    onAlertClose = () =>{
+        this.setState({
+            notice: ''
+        })
     }
 
     render() {
@@ -58,8 +65,14 @@ class Login1 extends React.Component {
         },{
             max: 11,
             message:'请输入11位手机号'
-        }]
-        return <div style={{ height: '100vh' }}>
+        }];
+        const captchaRules = [
+            {
+                required:true,
+                message: '请输入验证码'
+            }
+        ]
+        return <div style={{ height: '100vh', paddingTop: '20%' ,paddingLeft: '33%', paddingRight: '33%'  }}>
             <Login 
                 defaultActiveKey={this.state.type}
                 onTabChange={this.onTabChange}
@@ -71,18 +84,18 @@ class Login1 extends React.Component {
                 </Tab>
                 <Tab key="tab2" tab="手机号登录">
                     <Mobile name="mobile" placeholder="手机号" rules={mobileRules}></Mobile>
-                    <Captcha name="captcha" placeholder="验证码"></Captcha>
+                    <Captcha name="captcha" rules={captchaRules}  countDown='60' placeholder="验证码"></Captcha>
                 </Tab>
                 <Submit>
                     登录
                 </Submit>
             </Login>
-            <Router history={browserHistory}>
+            {/* <Router history={browserHistory}>
                 <Redirect to='./MainFrame/MainFrame'>123</Redirect>
-            </Router>
+            </Router> */}
             {
                 this.state.notice &&
-                <Alert message={this.state.notice} type="info" showIcon closable></Alert>
+                <Alert message={this.state.notice} onClose={this.onAlertClose} type="info" showIcon closable></Alert>
             }
         </div>
     }
