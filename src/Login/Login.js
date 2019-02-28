@@ -35,17 +35,18 @@ class Login1 extends React.Component {
     }
 
     openNotificationwithIcon = (type)=>{
-        notification[type]({
-            message:this.state.notice,
+        console.log('openNotificationwithIcon',this.state.notice)
+        notification.error({
+            message: this.state.notice,
             description:'hha'
         })
     }
 
 
     onSubmit= (err,values)=>{
-        // this.setState({
-        //     notice: '消息提醒'
-        // })
+        this.setState({
+            notice: '消息提醒'
+        })
 
         this.openNotificationwithIcon('error');
 
